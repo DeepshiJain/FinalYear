@@ -1,0 +1,40 @@
+body{
+    background-color:#fff;
+    background-image:url("../images/index.jpg");
+    background-size:cover;
+    padding: 20px 0px 20px 0px;
+}
+
+.heading{
+    color:red;
+    font-size:34px;
+    float:left;
+    font-weight:bold;
+}
+
+.main{
+    padding:0px 35px 0px 35px;
+}
+
+.login{
+    float:right;
+    background-color:red;
+}
+
+.middle{
+    padding:100px 0px 0px 0px;
+    font-size:68px;
+    float:left;
+    font-weight:bold;
+    color:white;
+}
+
+.sap{
+    font-size:27px;
+    color:white;
+}
+
+.signup{
+    background-color:red;
+    margin-left:35px;
+}
