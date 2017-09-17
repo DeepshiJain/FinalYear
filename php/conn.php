@@ -6,5 +6,9 @@
     $conn = pg_connect($str);
     if(!$conn){
         die("connection failed");
+         echo"hello unsuccessful";
+    }
+    else {
+     echo"hello successful";
     }
 ?>
