@@ -5,10 +5,11 @@
 
     $conn = pg_connect($str);
     if(!$conn){
+        echo "unsuccessful";
         die("connection failed");
-         echo"hello unsuccessful";
+
     }
     else {
-     echo"hello successful";
+     echo "Successful";
     }
 ?>

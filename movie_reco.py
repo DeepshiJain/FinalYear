@@ -1,12 +1,3 @@
-# Original tutorial at http://online.cambridgecoding.com/notebooks/eWReNYcAfB/implementing-your-own-recommender-systems-in-python-2
-#
-# Python code using NumPy
-# to create training and testing data matrices
-# from given dataset of movie ratings by users
-# and to predict ratings as a recommendation system
-# and to compute corresponding error in predictions.
-#
-
 import numpy as np
 import pandas as pd
 
