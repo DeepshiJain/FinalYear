@@ -44,7 +44,13 @@ button.smtbtn:hover{
 
 .signup{
     color:red;
+    text-decoration:none;
 
+}
+
+.signup:hover{
+    color:red;
+    text-decoration:underline;
 }
 
 .fa {
