@@ -22,7 +22,7 @@ def fun1(input_file):
 	input_movie_and_ratings = []
 	for ln in input_data:
 		ln = ln.split(",")
-		input_movie_and_ratings.append([ln[1], ln[2]])  # [float(ln[1]), float(ln[2])])
+		input_movie_and_ratings.append([ln[1], ln[2].strip()])  # [float(ln[1]), float(ln[2])])
 		if ln[0] not in input_user:
 			input_user.append(ln[0])  # int(ln[0]))
 	#print ("Movie-Rating Tuples: %s" % str(input_movie_and_ratings))
@@ -30,13 +30,11 @@ def fun1(input_file):
 
 	ratings = open("../data/ml-ratings-100k-sample.csv", "r").readlines()[1:]
 	#ratings = numpy.loadtxt(open("ml-ratings-lean.csv","rb"), delimiter=",", skiprows=1)
-	#f = open("../data/output/a1-ratings-extract.csv", "w")
+	f = open("../data/output/a1-ratings-extract.csv", "w")
 
 	#count = 0
 	#total = float(len(ratings))
 
-	print(input_movie_and_ratings)
-	print(input_user)
 	for ln in ratings:
 		#count += 1  # Progress Bar
 		#p = count / total * 100.0
@@ -48,7 +46,6 @@ def fun1(input_file):
 		#print(pair)
 		#  if pair in input_movie_and_ratings and ratings[ln][0] not in input_user:
 		if pair in input_movie_and_ratings and ln2[0] not in input_user:
-			print(pair)
 			with open("../data/output/a1-ratings-extract.csv", "a") as f:
 				f.write(ln)
 
@@ -62,7 +59,7 @@ def fun2():
 	ratings_count_list = []
 	ratings_count_list_uniques = []
 
-	#of = open("../data/output/a2-ratings-extract-counts-by-user.csv", "w")
+	f = open("../data/output/a2-ratings-extract-counts-by-user.csv", "w")
 
 	for n in range(0, len(data)):
 		row1 = data[n].split(",")
@@ -107,6 +104,7 @@ def fun2():
 	OrderedDict(sorted(count_dict.items(), key=lambda t: t[0]))
 	print ("Distribution : %s" % str(count_dict))
 
+	f = open("../data/output/a2-ratings-extract-counts-by-user-distrib.csv", "w")
 	for i in count_dict:
 		with open("../data/output/a2-ratings-extract-counts-by-user-distrib.csv", "a") as f:
 			f.write(str(i) + ',' + str(count_dict[i]) + '\n')
@@ -128,6 +126,7 @@ def fun3(lower_limit=6, upper_limit=8):
 
 	#print ("Users ( %s ): %s"% str(len(agreeing_users)),str(agreeing_users))
 
+	f = open("../data/output/a3-userids-extract-agreeing-users.csv", "w")
 	for row in agreeing_users:
 		with open("../data/output/a3-userids-extract-agreeing-users.csv", "a") as f:
 			f.write(row + '\n')
@@ -154,6 +153,7 @@ def fun4():
 	print ("Number of Users: %s" % str(len(agreeing_users)))
 
 	#count = 0
+	f = open("../data/output/a4-ratings-extract-recommended.csv", "w")
 	for ln in ratings:
 		ln2 = ln.split(",")
 		#count += 1
@@ -192,6 +192,7 @@ def fun5():
 			count_dict[count1] += 1
 	OrderedDict(sorted(count_dict.items(), key=lambda t: t[0]))
 
+	f = open("../data/output/a5-ratings-extract-recommended-sorted-counts.csv", "w")
 	for i in count_dict:
 		with open("../data/output/a5-ratings-extract-recommended-sorted-counts.csv", "a") as f:
 			f.write(str(i) + ',' + str(count_dict[i]) + '\n')
@@ -218,7 +219,8 @@ def fun6(min_ratings=10):
 	temp_movie_ratings_sum = 0.0
 	temp_movie_counts = 0
 	temp_movie_avg = 0
-	
+
+	f = open("../data/output/a6-movies-extract-recommended.csv", "w")
 	for n in range(0, len(extracted_ratings)):
 		#count += 1  # Progress Bar
 		#sys.stdout.write("\rRatings processsed: %i" % count)
@@ -257,7 +259,7 @@ def fun7(min_avg_rating=4.0):
 	movies = open("../data/ml-movies.csv", "r").readlines()
 	rec_data = open("../data/output/a6-movies-extract-recommended.csv", "r").readlines()
 
-	with open("../data/output/a7-movies-extract-recommended-films.csv", "a") as f:
+	with open("../data/output/a7-movies-extract-recommended-films.csv", "w") as f:
 		f.write(','.join(['movieId', 'avgRating', 'agreeCount', 'title', 'genres', '\n']))
 
 	#count = 0
@@ -284,14 +286,14 @@ def fun7(min_avg_rating=4.0):
 
 if __name__ == '__main__':
 	fun1("../data/input/v1-input-ratings.csv")
-	"""
+	#"""
 	fun2()
-	fun3(7, 8)
+	fun3(2, 90)
 	fun4()
 	fun5()
 	fun6()
 	fun7()
-	"""
+	#"""
 
 
 	# parser = argparse.ArgumentParser()
