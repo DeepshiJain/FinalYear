@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 
 train_data, test_data = train_test_split(df, test_size=0.25)
 
-print(type(train_data))
+#print(type(train_data))
 
 # Create two user-item matrices, one for training and another for testing
 #train_data = train_data.reset_index();
@@ -24,18 +24,22 @@ n_train = train_data.shape[0];
 n_test = test_data.shape[0];
 
 train_data_matrix = np.zeros((n_users, n_items))
-#print(train_data.get_value(train_data.index[0],'user_id'))
+#print(train_data)
 i=0
+#print("Getting single value....")
+#print(train_data.iat[1,1])
 while i<n_train:
     #print(train_data.index[i])
-    train_data_matrix[train_data.get_value(train_data.index[i],'user_id') - 1, train_data.get_value(train_data.index[i],'item_id') - 1] = train_data.get_value(train_data.index[i],'rating')
+    #train_data_matrix[train_data.get_value(train_data.index[i],'user_id') - 1, train_data.get_value(train_data.index[i],'item_id') - 1] = train_data.get_value(train_data.index[i],'rating')
+    train_data_matrix[train_data.iat[i,0] - 1, train_data.iat[i,1] - 1] = train_data.iat[i,2]
     i = i+1
 
 test_data_matrix = np.zeros((n_users, n_items))
 i = 0
 while i<n_test:
     #print(test_data.index[i])
-    test_data_matrix[test_data.get_value(test_data.index[i],'user_id') - 1, test_data.get_value(test_data.index[i],'item_id') - 1] = test_data.get_value(test_data.index[i],'rating')
+    #test_data_matrix[test_data.get_value(test_data.index[i],'user_id') - 1, test_data.get_value(test_data.index[i],'item_id') - 1] = test_data.get_value(test_data.index[i],'rating')
+    test_data_matrix[test_data.iat[i,0] - 1, test_data.iat[i,1] - 1] = test_data.iat[i,2]
     i = i+1
 
 from sklearn.metrics.pairwise import pairwise_distances
@@ -53,7 +57,7 @@ def predict(ratings, similarity, type='user'):
 
 user_prediction = predict(train_data_matrix, user_similarity, type='user')
 
-print(user_prediction)
+#print(user_prediction)
 
 from sklearn.metrics import mean_squared_error
 from math import sqrt
